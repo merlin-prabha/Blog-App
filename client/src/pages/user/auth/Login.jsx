@@ -46,7 +46,7 @@ const Login = () => {
         </h1>
 
         <div className="mt-5">
-          <label className="text-sm font-medium">INPUT</label>
+          <label className="text-sm font-medium">USERNAME</label>
           <CustomInput
             type={"text"}
             placeholder={"Username"}
