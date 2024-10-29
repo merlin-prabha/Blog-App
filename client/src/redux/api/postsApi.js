@@ -6,10 +6,16 @@ export const postsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: base_url }),
   endpoints: (build) => ({
     createPost: build.mutation({
-      query: ({ title, descrption, post_image, created_user }) => ({
+      query: (formData) => ({
         url: "post/add-post",
         method: "POST",
-        body: { title, descrption, post_image, created_user },
+        body: formData,
+      }),
+    }),
+    getAllPost: build.mutation({
+      query: () => ({
+        url: "post/posts",
+        method: "GET",
       }),
     }),
     // createUser: build.mutation({
@@ -35,6 +41,4 @@ export const postsApi = createApi({
   }),
 });
 
-export const {
-  useCreatePostMutation
-} = postsApi;
+export const { useCreatePostMutation, useGetAllPostMutation } = postsApi;

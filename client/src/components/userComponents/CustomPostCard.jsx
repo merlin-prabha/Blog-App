@@ -9,14 +9,14 @@ const CustomPostCard = ({details}) => {
             <p className='text-3xl font-bold'>{title}</p>
             <p>{likes} Likes</p>
             <div>
-                {comments ? (
+                {/* {comments.length !== 0 ? (
                     comments.map(each => (
                         <div className='bg-gray-100 mb-3 p-5'>
                             <p>{each.name}</p>
                             <p>{each.comment}</p>
                         </div>
                     ))
-                ) : ""}
+                ) : ""} */}
             </div>
         </div>
     </div>
