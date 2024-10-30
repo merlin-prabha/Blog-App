@@ -34,9 +34,9 @@ const CreatePost = () => {
       const res = await createPostMutation(formData).unwrap();
       console.log(res);
       if (res.success) {
-        setTitle("")
-        setDescription("")
-        setImage("")
+        setTitle("");
+        setDescription("");
+        setImage("");
       }
     } catch (error) {
       console.log(error);
@@ -57,7 +57,6 @@ const CreatePost = () => {
         <Upload
           action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
           listType="picture"
-          defaultFileList={image}
           onChange={(e) => {
             setImage(e.file);
           }}

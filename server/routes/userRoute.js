@@ -15,7 +15,7 @@ router.post("/verifyUser", verifyUser);
 
 router.post("/login", loginUser);
 
-router.use(authMiddleware);
+// router.use(authMiddleware);
 
 router.route("/user/:id").delete(deleteuserById).get(getUserById);
 router.route("/users").get(getAllUsers);

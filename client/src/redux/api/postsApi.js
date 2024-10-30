@@ -18,6 +18,12 @@ export const postsApi = createApi({
         method: "GET",
       }),
     }),
+    getPostDetail: build.mutation({
+      query: ({id}) => ({
+        url: `post/post/${id}`,
+        method: "GET"
+      }),
+    }),
     // createUser: build.mutation({
     //   query: ({ name, password, email }) => ({
     //     url: "user/add-user",
@@ -41,4 +47,4 @@ export const postsApi = createApi({
   }),
 });
 
-export const { useCreatePostMutation, useGetAllPostMutation } = postsApi;
+export const { useCreatePostMutation, useGetAllPostMutation, useGetPostDetailMutation } = postsApi;

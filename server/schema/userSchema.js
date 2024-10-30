@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       default: "",
     },
-    is_oto_verified: {
+    is_otp_verified: {
       type: Boolean,
       default: false,
     },
@@ -26,6 +26,10 @@ const UserSchema = new mongoose.Schema(
     secretKey: {
       type: String,
       required: true,
+    },
+    profile_photo: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }

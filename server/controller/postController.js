@@ -50,7 +50,10 @@ exports.addPost = async (req, res) => {
 
 exports.getPosts = async (req, res) => {
   try {
-    const posts = await postModel.find().populate("title");
+    const posts = await postModel
+      .find()
+      .populate("created_user")
+      .sort("-createdAt");
 
     if (posts) {
       return res.status(200).send({
@@ -60,6 +63,30 @@ exports.getPosts = async (req, res) => {
       });
     }
     return res.status(404).send({ success: false, message: "No Posts Found" });
+  } catch (error) {
+    return res
+      .status(STATUS_CODES.INTERNAL_SERVER_ERROR.code)
+      .send(STATUS_CODES.INTERNAL_SERVER_ERROR.message);
+  }
+};
+
+exports.getPostById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id, "id");
+
+    const post = await postModel.findById(id).populate("created_user");
+
+    console.log(post, "post");
+
+    if (post) {
+      return res.status(200).send({
+        success: true,
+        message: "Post retrived Successfully!!",
+        data: post,
+      });
+    }
+    return res.status(404).send({ success: false, message: "No Post found" });
   } catch (error) {
     return res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR.code)

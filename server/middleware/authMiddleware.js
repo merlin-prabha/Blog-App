@@ -4,6 +4,8 @@ const userModel = require("../schema/userSchema");
 exports.authMiddleware = async (req, res, next) => {
   try {
     const { token } = req.body;
+    console.log(token, "token");
+    
 
     const decodedToken = jwt.decode(token);
 

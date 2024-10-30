@@ -30,7 +30,9 @@ export const authApi = createApi({
       query: ({ id }) => ({
         url: `user/user/${id}`,
         method: "GET",
-       
+     
+      
+        
       }),
     }),
   }),
