@@ -6,7 +6,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const connectDatabase = require("./db/db");
 const userRoute = require("./routes/userRoute");
-const postRoute = require("./routes/postRoute")
+const postRoute = require("./routes/postRoute");
 // const bodyParser = require("body-parser");
 
 //env config
@@ -29,7 +29,7 @@ connectDatabase();
 // Routes
 
 app.use("/user", userRoute);
-app.use("/post",postRoute)
+app.use("/post", postRoute);
 // app.use("/product", productRoute);
 // app.use("/category", categoryRoute);
 

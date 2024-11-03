@@ -30,9 +30,13 @@ export const authApi = createApi({
       query: ({ id }) => ({
         url: `user/user/${id}`,
         method: "GET",
-     
-      
-        
+      }),
+    }),
+    updateUser: build.mutation({
+      query: ({ id, formData }) => ({
+        url: `user/user/${id}`,
+        method: "PUT",
+        body: { formData },
       }),
     }),
   }),
@@ -42,5 +46,6 @@ export const {
   useLoginMutation,
   useCreateUserMutation,
   useVerifyUserMutation,
-  useGetUserDetailMutation
+  useGetUserDetailMutation,
+  useUpdateUserMutation
 } = authApi;

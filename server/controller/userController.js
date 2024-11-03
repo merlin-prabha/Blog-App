@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const STATUS_CODES = require("../statusCode");
 const nodemailer = require("nodemailer");
+const path = require("path");
 
 const sendMail = (email, otp) => {
   try {
@@ -45,17 +46,16 @@ exports.verifyUser = async (req, res) => {
   try {
     const userExist = await userModel.findById(_id);
     console.log(userExist, "user");
-    
+
     if (userExist) {
       const matchOtp = userExist.generated_otp === parseInt(otp);
 
       if (matchOtp) {
-         const token = jwt.sign(
-           { id: userExist._id, name: userExist.name, email: userExist.email },
-           userExist.secretKey
-         );
+        const token = jwt.sign(
+          { id: userExist._id, name: userExist.name, email: userExist.email },
+          userExist.secretKey
+        );
 
-         
         const useUpdate = await userModel.findByIdAndUpdate(
           userExist._id,
           {
@@ -64,7 +64,9 @@ exports.verifyUser = async (req, res) => {
           },
           { new: true, runValidators: true }
         );
-        return res.status(201).send({ message: "success", data: useUpdate, token: token });
+        return res
+          .status(201)
+          .send({ message: "success", data: useUpdate, token: token });
       }
       return res.status(400).send({ message: "Fail Otp" });
     }
@@ -136,6 +138,46 @@ exports.getUserById = async (req, res) => {
         .status(STATUS_CODES.ACCEPTED.code)
         .send({ message: "User Available", user });
     }
+    return res.status(STATUS_CODES.BAD_REQUEST.code).send("User not available");
+  } catch (error) {
+    return res
+      .status(STATUS_CODES.INTERNAL_SERVER_ERROR.code)
+      .send(STATUS_CODES.INTERNAL_SERVER_ERROR.message);
+  }
+};
+
+exports.updateUserById = async (req, res) => {
+  try {
+    const { profile_photo, name } = req.body;
+    const { id } = req.params;
+    const user = await userModel.findById(id);
+    console.log(req.body, "body");
+
+    const image = req.files?.profile_photo?.map((user) => user.path);
+
+    const tempImagePath = req.files ? image.toString() : "";
+
+    const imagePath = tempImagePath
+      ? path.join("public/uploads", title, path.basename(tempImagePath))
+      : "";
+    
+
+    if (user) {
+      const updatedUser = await userModel.findByIdAndUpdate(
+        id,
+        {
+          profile_photo: imagePath
+          ? `${req.protocol}://${req.get("host")}/${imagePath}`
+          : "",
+          name,
+        },
+        { new: true }
+      );
+      return res
+        .status(201)
+        .send({ success: true, message: "profile updated", data: updatedUser });
+    }
+
     return res.status(STATUS_CODES.BAD_REQUEST.code).send("User not available");
   } catch (error) {
     return res

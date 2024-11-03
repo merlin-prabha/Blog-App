@@ -24,6 +24,7 @@ export const postsApi = createApi({
         method: "GET"
       }),
     }),
+    
     // createUser: build.mutation({
     //   query: ({ name, password, email }) => ({
     //     url: "user/add-user",

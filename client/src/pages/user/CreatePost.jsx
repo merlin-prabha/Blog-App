@@ -49,22 +49,6 @@ const CreatePost = () => {
         className="!flex flex-col p-10 md:bg-white md:h-[80%] rounded-lg mt-10 md:w-[70%]"
         onSubmit={handleSubmit}
       >
-        {/* <CustomUploadButton
-          placeholder={"Add a cover image"}
-          // value={image}
-          onChange={(e) => setImage(e.file)}
-        /> */}
-        <Upload
-          action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-          listType="picture"
-          onChange={(e) => {
-            setImage(e.file);
-          }}
-        >
-          <Button type="primary" icon={<UploadOutlined />} className="mt-5">
-            Upload
-          </Button>
-        </Upload>
         <input
           type="text"
           value={title}
