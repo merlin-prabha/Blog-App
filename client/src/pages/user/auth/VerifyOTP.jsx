@@ -18,12 +18,18 @@ const VerifyOTP = () => {
     e.preventDefault();
     try {
       const res = await verifyUser({ otp, id }).unwrap();
-      console.log(res);
+      console.log(res, "verify res");
+      
+      console.log(res.data, "res user");
+      console.log(JSON.stringify(res.data), "stringify");
+      
+
 
       if (res.message === "success") {
-        navigate("/success");
+        
         localStorage.setItem("token", res.token);
-        localStorage.setItem("user",JSON.stringify( res.user))
+        localStorage.setItem("user",JSON.stringify(res.data))
+        navigate("/success");
       }
     } catch (error) {
       console.log("Verify Error: ", error);

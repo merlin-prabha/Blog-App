@@ -42,6 +42,6 @@ const storage = multer.diskStorage({
 //   { name: "product_images", maxCount: 3 },
 // ]);
 
-const upload = multer({ storage: storage }).single("post_image");
+const upload = multer({ storage: storage }).single("profile_photo");
 
 module.exports = upload;

@@ -4,15 +4,14 @@ import {
   useUpdateUserMutation,
 } from "../../redux/api/authApi";
 import CustomInput from "../../components/userComponents/CustomInput";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = useState("");
-  const [editClicked, setEditClicked] = useState(false);
-  const [updatedName, setUpdatedName] = useState("");
-  const [updatedImage, setUpdatedImage] = useState("");
+  
 
   const [getUserDetailsMutation] = useGetUserDetailMutation();
-  const [updateUserMutation] = useUpdateUserMutation();
+  
 
   const localUser = JSON.parse(localStorage.getItem("user"));
   const id = localUser._id;
@@ -74,38 +73,18 @@ const Profile = () => {
           />
         </div>
         <div className=" md:px-[20%] !flex flex-col bg-white rounded-lg">
-          <button
-            type="button"
-            className="bg-black text-white p-3 rounded-lg self-end mt-5 mr-5"
-            onClick={() => setEditClicked(!editClicked)}
-          >
-            Edit
-          </button>
+          <Link to="/settings" className=" self-end">
+            <button
+              type="button"
+              className="bg-black text-white p-3 rounded-lg mt-5 mr-5"
+            >
+              Edit
+            </button>
+          </Link>
           <div className="p-5">
             <h1 className="text-4xl font-bold font-mono mb-3">{user.name}</h1>
             <p>Joined on {new Date(user.createdAt).getFullYear()}</p>
           </div>
-          {editClicked && (
-            <form className="!flex flex-col m-5" onSubmit={handleUpdate}>
-              <CustomInput
-                type={"text"}
-                placeholder={"Enter Name"}
-                value={updatedName}
-                onChange={(e) => setUpdatedName(e.target.value)}
-              />
-              <input
-                type="file"
-                className="my-5"
-                onChange={(e) => setUpdatedImage(e.target.files)}
-              />
-              <button
-                type="submit"
-                className="border-2 bg-black text-white p-3 rounded-md"
-              >
-                Update
-              </button>
-            </form>
-          )}
         </div>
       </div>
     </div>

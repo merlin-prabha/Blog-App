@@ -25,7 +25,7 @@ const CustomPostCard = ({details}) => {
       <div className="flex flex-col mt-5">
         <p>{user}</p>
         <Link to={`/post/${_id}`}>
-          <p className="text-3xl font-bold">{title}</p>
+          <p className="text-3xl font-bold hover:text-blue-500">{title}</p>
         </Link>
         <p>{likes} Likes</p>
         <div>

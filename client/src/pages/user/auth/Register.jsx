@@ -29,7 +29,7 @@ const Register = () => {
       dispatch(addUserToVerify(res));
       setError("");
 
-      console.log(res, "res");
+      console.log(res, "register res");
 
       if (res.message == "User Created Successfully") {
         navigate("/verify", { state: { userId: res?.user?._id } });

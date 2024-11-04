@@ -37,6 +37,10 @@ const Home = () => {
       // const res = await getAllpostMutation().unwrap();
       // console.log(res);
 
+      // const user = localStorage.getItem("user")
+      // console.log(user, "local");
+      
+
       const {data} = await getAllpostMutation()
       console.log(data, "data");
       setPosts(data.data)

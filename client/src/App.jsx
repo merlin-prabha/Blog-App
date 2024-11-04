@@ -13,6 +13,7 @@ import Profile from "./pages/user/Profile";
 import CreatePost from "./pages/user/CreatePost";
 import ProfileById from "./pages/user/ProfileById";
 import PostDetails from "./pages/user/PostDetails";
+import Settings from "./pages/user/Settings";
 
 function App() {
   // const theme = useSelector((state) => state.theme.theme);
@@ -29,7 +30,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/new" element={<CreatePost />} />
-            {/* <Route path="/profile/:id" element={ProfileById} /> */}
+            <Route path="/settings" element={<Settings />} />
             <Route path="/post/:id" element={<PostDetails />} />
           </Route>
         </Route>

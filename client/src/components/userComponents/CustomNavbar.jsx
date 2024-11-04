@@ -28,7 +28,7 @@ const CustomNav = () => {
         className={`!flex flex-row justify-between items-center p-5 md:px-[20%] bg-white`}
       >
         <Link to="/home">
-          <h1 className="text-2xl self-center font-medium mt-3 font-serif">
+          <h1 className="text-2xl self-center font-medium mt-3 font-serif hover:text-blue-500">
             Snapnest
           </h1>
         </Link>
